@@ -18,11 +18,11 @@ function Sort() {
     const dispatch = useDispatch();
     const sort = useSelector(selectSort);
     const [open, setOpen] = useState(false);
-    const sortRef = useRef();
+    const sortRef = useRef(null);
 
     //скрываем sort при клике на body 
     useEffect(() => {
-        const handleClickOutside = event => {
+        const handleClickOutside = (event: any) => {
             if (!event.path.includes(sortRef.current)) {
                 setOpen(false);
             }

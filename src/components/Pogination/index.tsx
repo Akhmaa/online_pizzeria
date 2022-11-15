@@ -3,8 +3,12 @@ import ReactPaginate from 'react-paginate';
 
 import styles from './Pogination.module.scss'
 
+type PoginationProps = {
+    currentPage: number;
+    onClickPage: any;
+}
 
-function Pogination({ currentPage, onClickPage }) {
+const Pogination: React.FC<PoginationProps> = ({ currentPage, onClickPage }) => {
     return (
         <ReactPaginate
             className={styles.root}
@@ -15,7 +19,6 @@ function Pogination({ currentPage, onClickPage }) {
             pageCount={3}
             forcePage={currentPage - 1}
             previousLabel="<"
-            renderOnZeroPageCount={null}
         />
     );
 }

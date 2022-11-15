@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
 
-import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
-import { fetchPizzas } from '../redux/slices/pizzasSlice';
+import { selectFilter, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
+import { fetchPizzas, selectPizzaData } from '../redux/slices/pizzasSlice';
 
 import Pogination from "../components/Pogination";
 import Categories from '../components/Categories';
@@ -19,13 +19,11 @@ import { useRef } from "react";
 
 
 
-
-
-function Home() {
+const Home: React.FC = () => {
     const navigate = useNavigate();
 
-    const { items, status } = useSelector((state) => state.pizza);
-    const { categoryId, sort, currentPage, searchValue } = useSelector((state) => state.filter);
+    const { items, status } = useSelector(selectPizzaData);
+    const { categoryId, sort, currentPage, searchValue } = useSelector(selectFilter);
     const dispatch = useDispatch();
 
     const isSearch = useRef(false);
@@ -39,6 +37,7 @@ function Home() {
         let search = searchValue ? `&search=${searchValue}` : '';
 
         dispatch(
+            //@ts-ignore
             fetchPizzas({
                 category,
                 search,
@@ -50,12 +49,12 @@ function Home() {
         window.scrollTo(0, 0);
     };
 
-    const onChangePage = (number) => {
-        dispatch(setCurrentPage(number))
+    const onChangePage = (page: number) => {
+        dispatch(setCurrentPage(page))
     }
 
-    const onChangeCategory = (id) => {
-        dispatch(setCategoryId(id))
+    const onChangeCategory = (idx: number) => {
+        dispatch(setCategoryId(idx))
     }
 
     //Если изенили параметры и быд 1-й рендер, то проверяем URL-параметры и сохроняем и redux'се
