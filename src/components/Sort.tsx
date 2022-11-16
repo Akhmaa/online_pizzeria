@@ -5,7 +5,11 @@ import { selectSort, setSort } from '../redux/slices/filterSlice'
 type SortItem = {
     name: string,
     sortProperty: string
-}
+};
+
+type PopupClick = MouseEvent & {
+    path: Node[];
+};
 
 export const sortList: SortItem[] = [
     { name: 'популярности', sortProperty: 'rating' },
@@ -22,8 +26,8 @@ function Sort() {
 
     //скрываем sort при клике на body 
     useEffect(() => {
-        const handleClickOutside = (event: any) => {
-            if (!event.path.includes(sortRef.current)) {
+        const handleClickOutside = (event: PopupClick) => {
+            if (sortRef.current && !event.path.includes(sortRef.current)) {
                 setOpen(false);
             }
         }

@@ -5,7 +5,7 @@ import styles from './Pogination.module.scss'
 
 type PoginationProps = {
     currentPage: number;
-    onClickPage: any;
+    onClickPage: (page: number) => void;
 }
 
 const Pogination: React.FC<PoginationProps> = ({ currentPage, onClickPage }) => {

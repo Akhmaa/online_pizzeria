@@ -57,7 +57,7 @@ const Home: React.FC = () => {
         dispatch(setCategoryId(idx))
     }
 
-    //Если изенили параметры и быд 1-й рендер, то проверяем URL-параметры и сохроняем и redux'се
+    //Если изенили параметры и был 1-й рендер, то проверяем URL-параметры и сохроняем и redux'се
     useEffect(() => {
         if (isMounted.current) {
             const queryString = qs.stringify({
