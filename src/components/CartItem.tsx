@@ -1,7 +1,7 @@
 import { type } from "@testing-library/user-event/dist/type";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addItem, minusItem, removeItem } from "../redux/slices/cartSlice";
+import { addItem, CartItem, minusItem, removeItem } from "../redux/slices/cartSlice";
 
 type CartItemprops = {
     id: string;
@@ -13,11 +13,11 @@ type CartItemprops = {
     imageUrl: string;
 }
 
-const CartItem: React.FC<CartItemprops> = ({ id, size, title, type, price, count, imageUrl }) => {
+const CartItemBlock: React.FC<CartItemprops> = ({ id, size, title, type, price, count, imageUrl }) => {
     const dispatch = useDispatch();
 
     const onClickPlus = () => {
-        dispatch(addItem({ id, }))
+        dispatch(addItem({ id, } as CartItem))
     }
 
     const onClickMinus = () => {
@@ -74,4 +74,4 @@ const CartItem: React.FC<CartItemprops> = ({ id, size, title, type, price, count
     );
 }
 
-export default CartItem;
+export default CartItemBlock;
