@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useCallback, useEffect } from "react";
+import { useSelector } from "react-redux";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
 
@@ -54,9 +54,9 @@ const Home: React.FC = () => {
         dispatch(setCurrentPage(page))
     }
 
-    const onChangeCategory = (idx: number) => {
+    const onChangeCategory = useCallback((idx: number) => {
         dispatch(setCategoryId(idx))
-    }
+    }, []);
 
     //Если изенили параметры и был 1-й рендер, то проверяем URL-параметры и сохроняем и redux'се
     useEffect(() => {
@@ -105,15 +105,14 @@ const Home: React.FC = () => {
 
 
 
-    const pizzas = items.map(obj => <PizzaBlock sizes={[]} types={[]} key={obj.id} {...obj} />);
+    const pizzas = items.map(obj => <PizzaBlock key={obj.id} {...obj} />);
     const skeleton = [...new Array(10)].map((_, index) => <Skeleton key={index} />)
-
 
     return (
         <div className="container">
             <div className="content__top">
                 <Categories value={categoryId} onClickCategory={onChangeCategory} />
-                <Sort />
+                <Sort sort={sort} />
             </div>
             <h2 className="content__title">Все пиццы</h2>
 
