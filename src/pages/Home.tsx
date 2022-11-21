@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import qs from "qs";
 import { useNavigate } from "react-router-dom";
 
-import { FilterSliceState, selectFilter, setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice';
-import { fetchPizzas, SearchPizzaParams, selectPizzaData } from '../redux/slices/pizzasSlice';
+
 
 import Pogination from "../components/Pogination";
 import Categories from '../components/Categories';
@@ -15,6 +14,11 @@ import Skeleton from '../components/PizzaBlock/Skeleton';
 import { sortList } from '../components/Sort'
 import { useRef } from "react";
 import { useAppDispatch } from "../redux/store";
+import { selectPizzaData } from "../redux/pizza/selectors";
+import { selectFilter } from "../redux/filter/selectors";
+import { fetchPizzas } from "../redux/pizza/asyncActions";
+import { setCurrentPage, setCategoryId, setFilters } from "../redux/filter/slice";
+import { SearchPizzaParams } from "../redux/pizza/types";
 
 
 
