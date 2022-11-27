@@ -4,7 +4,6 @@ import qs from "qs";
 import { useNavigate } from "react-router-dom";
 
 
-
 import Pogination from "../components/Pogination";
 import Categories from '../components/Categories';
 import Sort from '../components/Sort';
@@ -22,8 +21,6 @@ import { SearchPizzaParams } from "../redux/pizza/types";
 
 
 
-
-
 const Home: React.FC = () => {
     const navigate = useNavigate();
 
@@ -33,8 +30,6 @@ const Home: React.FC = () => {
 
     const isSearch = useRef(false);
     const isMounted = useRef(false);
-
-
 
 
     const getPizzas = async () => {
